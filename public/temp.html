@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<!-- Diseño del HTML utilizando Bootstrap -->
+	<meta charset="utf-8">
+	<title>servidor humedad</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+	<style media="screen">
+	html, body{
+		height: 100%;
+	}
+	body{
+		display: flex; 
+		align-items: center;
+		background-color: blue;
+	}
+	</style>
+	
+</head>
+<body>
+	<h1>SENSOR DE TEMPERATURA</h1>
+	<h1>Invernadero</h1>
+	
+	<div class="container">
+		<div class="row justify-content-center align-self-center">
+			<div class="card">
+				<div class="card header">
+					Valores de la humedad obtenido por el sensor en el campo
+				</div>
+				<h2 id="aceleracion" class ="display-3 p-4"></h2> 
+			</div>
+		</div>
+	</div>
+	<!-- Se agrega la ruta para la biblioteca de socket.io versión 4.5.1 -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.5.1/socket.io.js" charset="utf-8"></script>
+	<script>
+		
+		
+	var socket = io('http://192.168.1.68:8080');;
+	 
+	
+	socket.on('temp', function(data){
+		
+		console.log(data);
+		let acel = document.getElementById('temperatura');
+		acel.innerHTML = data;
+});
+
+	</script>
+</body>
+</html>
+
